@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter your working hours for today">
+    </TextView>
+    <com.google.android.material.slider.Slider
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:stepSize="0.5"
+        android:valueFrom="0.5"
+        android:valueTo="24"
+        android:value="8"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="8 hours"
+        android:textAlignment="center"></TextView>
+</LinearLayout>

@@ -8,7 +8,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please enter your working hours for today">
+        android:text="Please enter your working hours for today"
+        android:textSize="20sp">
     </TextView>
     <com.google.android.material.slider.Slider
         android:layout_height="wrap_content"
@@ -16,10 +17,13 @@
         android:stepSize="0.5"
         android:valueFrom="0.5"
         android:valueTo="24"
-        android:value="8"/>
+        android:value="8"
+        android:id="@+id/initialHoursSlider"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="8 hours"
-        android:textAlignment="center"></TextView>
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:id="@+id/hoursTextView"/>
 </LinearLayout>

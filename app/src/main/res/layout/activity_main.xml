@@ -3,27 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:gravity="center"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Please enter your working hours for today"
-        android:textSize="20sp">
-    </TextView>
-    <com.google.android.material.slider.Slider
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:stepSize="0.5"
-        android:valueFrom="0.5"
-        android:valueTo="24"
-        android:value="8"
-        android:id="@+id/initialHoursSlider"/>
-    <TextView
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:weightSum="100">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="8 hours"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:id="@+id/hoursTextView"/>
+        android:orientation="vertical"
+        android:layout_weight="90"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please enter your working hours for today"
+            android:textSize="20sp">
+        </TextView>
+        <com.google.android.material.slider.Slider
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:stepSize="0.5"
+            android:valueFrom="0.5"
+            android:valueTo="24"
+            android:value="8"
+            android:id="@+id/initialHoursSlider"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8 hours"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:id="@+id/hoursTextView"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="10"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start your day!"/>
+    </LinearLayout>
 </LinearLayout>

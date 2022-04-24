@@ -15,10 +15,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         //  Listener for changes in slider
-        binding.initialHoursSlider.addOnChangeListener()
+        binding.initialHoursSlider.addOnChangeListener { slider, value, fromUser ->
+            updateHoursText(value)
+        }
     }
 
     private fun updateHoursText(hours: Float){
-        binding.hoursTextView.setText(hours.toString())
+        binding.hoursTextView.setText("$hours hours")
     }
 }

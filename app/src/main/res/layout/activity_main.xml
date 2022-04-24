@@ -43,6 +43,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start your day!"/>
+            android:text="Start your day!"
+            android:id="@+id/startButton"/>
     </LinearLayout>
 </LinearLayout>

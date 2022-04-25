@@ -1,5 +1,6 @@
 package com.example.workintime
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,11 +23,20 @@ class MainActivity : AppCompatActivity() {
 
         //  Listener for start button
         binding.startButton.setOnClickListener{
-            Log.i("hey","Hola")
+            startDay()
         }
     }
 
     private fun updateHoursText(hours: Float){
         binding.hoursTextView.setText("$hours hours")
+    }
+
+    private fun startDay(){
+        val hours = binding.initialHoursSlider.value
+        val hoursParamId = "com.example.workintime.hours"
+        val intent = Intent(this, LogActivity::class.java).apply {
+            putExtra(hoursParamId, hours)
+        }
+        startActivity(intent)
     }
 }

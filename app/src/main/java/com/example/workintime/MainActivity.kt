@@ -3,6 +3,7 @@ package com.example.workintime
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.workintime.databinding.ActivityMainBinding
 
 val hoursParamId = "com.example.workintime.hours"

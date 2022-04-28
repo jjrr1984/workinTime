@@ -3,7 +3,6 @@ package com.example.workintime
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.workintime.databinding.ActivityMainBinding
 
 val hoursParamId = "com.example.workintime.hours"
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startDay(){
-        val hours = binding.initialHoursSlider.value
+        val hours = binding.initialHoursSlider.value.toInt()
         val intent = Intent(this, LogActivity::class.java).apply {
             putExtra(hoursParamId, hours)
         }

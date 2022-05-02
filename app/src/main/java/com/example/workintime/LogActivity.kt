@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.workintime.databinding.ActivityLogBinding
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.concurrent.schedule
 
 class LogActivity : AppCompatActivity() {
     private val initialTime: Date = Date()
@@ -30,6 +31,7 @@ class LogActivity : AppCompatActivity() {
         binding.cancelButton.setOnClickListener{
             cancelLog()
         }
+        startTimer()
     }
 
     private fun setInitialText(){
@@ -39,13 +41,18 @@ class LogActivity : AppCompatActivity() {
     }
 
     private fun takeBreak(){
+        val currentDate:Date = Date()
+        val currentDateFormatted = dateFormat.format(currentDate)
+
         if(employeeStatus === "working"){
-            val currentDate:Date = Date()
             binding.breakButton.text = imBackText
             employeeStatus = "idle"
+            binding.logTextView.append("- You took a break at ${currentDateFormatted}\n")
         }else{
             binding.breakButton.text = takeBreakText
             employeeStatus = "working"
+            binding.logTextView.append("- You came back at ${currentDateFormatted}\n")
+            startTimer()
         }
     }
 
@@ -58,5 +65,19 @@ class LogActivity : AppCompatActivity() {
         endTime.time +=  remainingMinutes*60*1000
         val endTimeFormatted = dateFormat.format(endTime)
         binding.endTimeTextView.text = "You should end your day at ${endTimeFormatted}"
+    }
+
+    private fun startTimer(){
+        Timer().schedule(60000) {
+            if(employeeStatus === "working") {
+                remainingMinutes -= 1
+                if(remainingMinutes === 0){
+                    //  Show end screen and notify
+                }else{
+                    setEndTimeText()
+                    startTimer()
+                }
+            }
+        }
     }
 }

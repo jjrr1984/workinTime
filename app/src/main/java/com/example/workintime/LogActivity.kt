@@ -13,6 +13,7 @@ class LogActivity : AppCompatActivity() {
     private val takeBreakText = "Take a break"
     private val imBackText = "I'm back"
     private var employeeStatus = "working"
+    private val dateFormat = SimpleDateFormat("H:mm")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +23,7 @@ class LogActivity : AppCompatActivity() {
         remainingMinutes = getIntent().getIntExtra(hoursParamId, 0) * 60
 
         setInitialText()
+        setEndTimeText()
         binding.breakButton.setOnClickListener{
             takeBreak()
         }
@@ -31,7 +33,6 @@ class LogActivity : AppCompatActivity() {
     }
 
     private fun setInitialText(){
-        val dateFormat = SimpleDateFormat("H:m")
         val dateFormatted = dateFormat.format(initialTime)
         val initialText = "- You started your day at ${dateFormatted}\n"
         binding.logTextView.text = initialText
@@ -50,5 +51,12 @@ class LogActivity : AppCompatActivity() {
 
     private fun cancelLog(){
         finish()
+    }
+
+    private fun setEndTimeText(){
+        var endTime: Date = Date()
+        endTime.time +=  remainingMinutes*60*1000
+        val endTimeFormatted = dateFormat.format(endTime)
+        binding.endTimeTextView.text = "You should end your day at ${endTimeFormatted}"
     }
 }

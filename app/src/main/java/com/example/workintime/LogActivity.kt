@@ -52,6 +52,7 @@ class LogActivity : AppCompatActivity() {
             binding.breakButton.text = takeBreakText
             employeeStatus = "working"
             binding.logTextView.append("- You came back at ${currentDateFormatted}\n")
+            setEndTimeText()
             startTimer()
         }
     }
@@ -74,7 +75,6 @@ class LogActivity : AppCompatActivity() {
                 if(remainingMinutes === 0){
                     //  Show end screen and notify
                 }else{
-                    setEndTimeText()
                     startTimer()
                 }
             }

@@ -73,11 +73,17 @@ class LogActivity : AppCompatActivity() {
             if(employeeStatus === "working") {
                 remainingMinutes -= 1
                 if(remainingMinutes === 0){
-                    //  Show end screen and notify
+                    endLog()
                 }else{
                     startTimer()
                 }
             }
         }
+    }
+
+    private fun endLog(){
+        binding.endTimeTextView.text = "You completed your working time!"
+        binding.breakButton.isEnabled = false
+        binding.cancelButton.text = "New log"
     }
 }

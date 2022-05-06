@@ -1,7 +1,11 @@
 package com.example.workintime
 
+import android.app.PendingIntent
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.workintime.databinding.ActivityLogBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -15,13 +19,18 @@ class LogActivity : AppCompatActivity() {
     private val imBackText = "I'm back"
     private var employeeStatus = "working"
     private val dateFormat = SimpleDateFormat("H:mm")
+    private lateinit var builder: NotificationCompat.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        remainingMinutes = getIntent().getIntExtra(hoursParamId, 0) * 60
+
+        setNotificationBuilder()
+
+        //remainingMinutes = getIntent().getIntExtra(hoursParamId, 0) * 60
+        remainingMinutes = 1
 
         setInitialText()
         setEndTimeText()
@@ -85,5 +94,24 @@ class LogActivity : AppCompatActivity() {
         binding.endTimeTextView.text = "You completed your working time!"
         binding.breakButton.isEnabled = false
         binding.cancelButton.text = "New log"
+        with(NotificationManagerCompat.from(this)) {
+            // notificationId is a unique int for each notification that you must define
+            notify(notificationID, builder.build())
+        }
+    }
+
+    private fun setNotificationBuilder(){
+        val intent = Intent(this, LogActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
+
+        this.builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            //.setSmallIcon(R.drawable.notification_icon)
+            .setContentTitle("Your day ended!")
+            //.setContentText("Now you can leave")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
     }
 }
